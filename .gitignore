@@ -3,3 +3,6 @@
 /log/*.log
 /tmp
 /fonts
+
+# Heroku wont compile assets if they are committed.
+/public/assets
