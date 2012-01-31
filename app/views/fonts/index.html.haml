@@ -1,0 +1,23 @@
+%h1 Listing fonts
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Link
+    %th
+    %th
+    %th
+
+  - @fonts.each do |font|
+    %tr
+      %td= font.name
+      %td= font.description
+      %td= font.link
+      %td= link_to 'Show', font
+      %td= link_to 'Edit', edit_font_path(font)
+      %td= link_to 'Destroy', font, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Font', new_font_path

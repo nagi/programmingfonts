@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @font.name
+%p
+  %b Description:
+  = @font.description
+%p
+  %b Link:
+  = @font.link
+
+= link_to 'Edit', edit_font_path(@font)
+\|
+= link_to 'Back', fonts_path
