@@ -18,3 +18,19 @@ download count.
 * I may provide a mechanism for feedback / feature requests.
 * I may Provide a facility for users to comment on fonts, as user comments may
 aid the decision making process of users who are selecting fonts.
+
+## Languages Supported
+0. Ruby
+0. JavaScript
+0. C
+0. Java
+0. C++
+0. PHP
+0. Python
+0. C#
+0. Perl
+0. SQL
+0. Shell
+0. Visual Basic
+0. Actionscript
+0. Objective-C
