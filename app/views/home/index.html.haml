@@ -1,7 +1,8 @@
 %h1 Programming Fonts
 %p Because code should be sexy.
 %ol.fonts
-  %li.font
-    Courier
-  %li.font
-    DeVu
+  - @fonts.each do |font|
+    %li.font
+      %p= font.name
+      %p= font.filename
+      %a= font.link

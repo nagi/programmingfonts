@@ -3,6 +3,7 @@
 %table
   %tr
     %th Name
+    %th Filename
     %th Description
     %th Link
     %th
@@ -12,6 +13,7 @@
   - @fonts.each do |font|
     %tr
       %td= font.name
+      %td= font.filename
       %td= font.description
       %td= font.link
       %td= link_to 'Show', font
