@@ -1,8 +1,8 @@
 %h1 Programming Fonts
-%p If you look at it all day, make it look nice.
+%p If you're looking at it all day, make it look nice.
 %ol.fonts
   - @fonts.each do |font|
     %li.font
-      %p= font.name
+      %p.name= font.name
       %p= font.filename
       %a= font.link
