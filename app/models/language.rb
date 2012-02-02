@@ -1,5 +1,4 @@
 class Language
-
   @@all = []
   cattr_accessor :all
   attr_accessor :name, :highlighter, :snippet

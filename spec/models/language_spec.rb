@@ -9,7 +9,7 @@ describe Language do
       Language.all.should be_a_kind_of(Array)
     end
 
-    it "should list some languages" do
+    it "should return some languages in the list" do
       Language.all.length.should >= 3
     end
   end
