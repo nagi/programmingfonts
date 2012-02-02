@@ -1,0 +1,64 @@
+-
+  name: Java
+  highlighter: shBrushJava.js
+  snippet: >
+    public class Bicycle {
+        public int cadence;
+        public int gear;
+        public int speed;
+
+        public Bicycle(int startCadence,
+                       int startSpeed,
+                       int startGear) {
+            gear = startGear;
+            cadence = startCadence;
+            speed = startSpeed;
+        }
+
+        public void applyBrake(int decrement) {
+            speed -= decrement;
+        }
+
+        public void speedUp(int increment) {
+            speed += increment;
+        }
+    }
+-
+  name: C
+  highlighter: shBrushC.js
+  snippet: >
+    #include <stdio.h>
+
+    main()
+    {
+      int c;  /* Character read from the file.	*/
+      FILE *ptr;
+
+      ptr = fopen("/etc/hosts","r");
+
+      while ((c = fgetc(ptr)) != EOF)
+      {
+        printf("%c",c);
+      }
+
+      fclose(ptr);			/* Close the file.			*/
+    }
+-
+  name: Ruby
+  highlighter: shBrushRuby.js
+  snippet: >
+    class Person < Ape
+      attr_accessor :age
+
+      def initialize(age = 0)
+        @age = age
+      end
+
+      def say_hi(name = 'mate')
+        puts 'Hello ' + name
+      end
+
+      def tell_age
+        age < 2 ? puts 'ga ga goo' : puts "I'm #{age} years old"
+      end
+    end
