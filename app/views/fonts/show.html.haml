@@ -16,3 +16,6 @@
 = link_to 'Edit', edit_font_path(@font)
 \|
 = link_to 'Back', fonts_path
+
+= Font.all.to_json
+= Language.to_json

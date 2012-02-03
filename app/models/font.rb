@@ -9,4 +9,8 @@ class Font < ActiveRecord::Base
     when '.otf' then 'opentype'
     end
   end
+
+  def as_json(options)
+    super(only: [:name, :description]).merge(:unix_name => unix_name)
+  end
 end
