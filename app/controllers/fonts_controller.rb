@@ -6,6 +6,7 @@ class FontsController < ApplicationController
 
   def show
     @font = Font.find(params[:id])
+    @language = 'java'
   end
 
   def new

@@ -3,19 +3,17 @@
 %p
   %b Name:
   = @font.name
-%p
-  %b Filename:
-  = @font.filename
-%p
-  %b Description:
-  = @font.description
-%p
-  %b Link:
-  = @font.link
 
-= link_to 'Edit', edit_font_path(@font)
-\|
 = link_to 'Back', fonts_path
 
-= Font.all.to_json
-= Language.to_json
+%pre{:class => 'brush: java'}
+  = Language.all.first.snippet
+
+:javascript
+  $(function() {
+    Progfonts = {};
+    Progfonts.fonts = #{Font.to_json};
+    Progfonts.languages = #{Language.to_json};
+    Progfonts.selected_font = "#{@font.unix_name}";
+    Progfonts.selected_language = "#{@language}";
+  });
