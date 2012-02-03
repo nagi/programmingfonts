@@ -3,6 +3,6 @@
 %ol.fonts
   - @fonts.each do |font|
     %li.font
-      %p.name= font.name
+      = link_to font.name, font_url(font), class:font.unix_name
       %p= font.filename
       %a= font.link

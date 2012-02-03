@@ -5,8 +5,9 @@
 @include font-face("<%= font.unix_name %>", font-files("<%= font.filename %>", <%= font.font_type %>))
 ol.fonts
   li.font
-    p.name
+    a.<%= font.unix_name %>
       font-size: 3em
       font-family: <%= font.unix_name %>
+      text-decoration: none
 
 <% end %>
