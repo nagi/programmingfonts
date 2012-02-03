@@ -17,15 +17,24 @@ describe Font do
     end
   end
 
-  describe "converting to JSON" do
-    it "should not include timestamps" do
-      JSON.parse(Font.make.to_json).should_not have_key("created_at")
+  describe Font, 'to_json' do
+    before(:each) { Font.make! }
+
+    it "produces a object, which can be indexed with a fonts shell escaped name" do
+      first_font = JSON.parse(Font.to_json)[Font.first.unix_name]
+      first_font.should be_a_kind_of(Hash)
     end
 
-    it "should include name & snippet" do
-      ["name", "unix_name", "description"].each do |key|
-        JSON.parse(Font.make.to_json).should have_key(key)
+    it "should contain the data for a font" do
+      ["name", "link", "description"].each do |key|
+        first_font = JSON.parse(Font.to_json)[Font.first.unix_name]
+        first_font.should have_key(key)
       end
+    end
+
+    it "should leave out the timestamps" do
+      first_font = JSON.parse(Font.to_json)[Font.first.unix_name]
+      first_font.should_not have_key("created_at")
     end
   end
 end

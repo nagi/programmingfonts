@@ -1,4 +1,11 @@
 class Font < ActiveRecord::Base
+
+  def self.to_json
+    fonts = {}
+    all.each { |font| fonts[font.unix_name] = font.as_json }
+    fonts.to_json
+  end
+
   def unix_name
     name.parameterize
   end
@@ -10,7 +17,7 @@ class Font < ActiveRecord::Base
     end
   end
 
-  def as_json(options)
-    super(only: [:name, :description]).merge(:unix_name => unix_name)
+  def as_json(options = nil)
+    super(only: [:name, :description, :link])
   end
 end
