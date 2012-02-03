@@ -1,13 +1,16 @@
 @import "compass/css3/font-face"
 
+ol.fonts
+  li.font
+    a
+      font-size: 3em
+      text-decoration: none
+
 <% Font.all.each do |font| %>
 
 @include font-face("<%= font.unix_name %>", font-files("<%= font.filename %>", <%= font.font_type %>))
-ol.fonts
-  li.font
-    a.<%= font.unix_name %>
-      font-size: 3em
-      font-family: <%= font.unix_name %>
-      text-decoration: none
+.<%= font.unix_name %>
+  font-size: 1em
+  font-family: <%= font.unix_name %>
 
 <% end %>
