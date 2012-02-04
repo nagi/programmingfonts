@@ -1,32 +1,8 @@
-%p#notice= notice
-
-%p
-  %b Name:
-  = @font.name
-
-= link_to 'Back', root_path
-
-// %div{:class => @font.unix_name}
-//   %pre#code{:class => 'brush: java'}
-//     = Language.all.first.snippet
+%div#container
 
 :javascript
-  Progfonts = {};
   Progfonts.fonts = #{Font.to_json};
   Progfonts.languages = #{Language.to_json};
-  Progfonts.selected_font = "#{@font.unix_name}";
-  Progfonts.selected_language = "#{@language}";
-  Progfonts.snippet = function(){
-    return Progfonts.languages[Progfonts.selected_language].snippet
-  };
-  Progfonts.source =
-  " <div class='{{selected_font}}'>                              " + 
-  "   <pre class='brush: {{selected_language}}>{{snippet}}</pre> " +
-  " </div>"
-
-  var template = Handlebars.compile(Progfonts.source);
-  var context = Progfonts;
-
-  console.log(template(context));
-
-  SyntaxHighlighter.highlight();
+  Progfonts.selectedFont = "#{@font.unix_name}";
+  Progfonts.selectedLanguage = "#{@language}";
+  Progfonts.renderTo($('#container'));

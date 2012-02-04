@@ -16,6 +16,9 @@
 //= require handlebars-1.0.0.beta.6
 //
 //= require shCore.js
+//= require shAutoloader.js
 //= require shBrushJava.js
+// require shBrushRuby.js
+// require shBrushC.js
 //
 //= require fonts

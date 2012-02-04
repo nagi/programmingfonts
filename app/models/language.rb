@@ -19,6 +19,8 @@ class Language
   end
 
   def self.to_json
+    # TODO; Investigate why my array is dissappearing now & then - Gargabe Collector? Superclass redefines @@all?
+    load if @@all.empty?
     to_hash.to_json
   end
 
