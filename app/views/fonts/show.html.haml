@@ -1,11 +1,12 @@
+= link_to 'Font list', '/'
 = render 'languages/selector'
 
-%div#container
+%div#code_snippet
 
 :javascript
   Progfonts.fonts = #{@fonts_json};
   Progfonts.languages = #{@languages_json};
   Progfonts.selectedFont = "#{@font.unix_name}";
   Progfonts.selectedLanguage = "#{@language}";
-  Progfonts.renderTo($('#container'));
+  Progfonts.renderTo($('#code_snippet'));
   SyntaxHighlighter.all()

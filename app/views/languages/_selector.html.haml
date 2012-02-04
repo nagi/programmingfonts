@@ -1,2 +1,2 @@
-- Language.all.each do |l|
-  %a= l.name
+- Language.all.each do |language|
+  = link_to language.name, font_url(@font, language: language.unix_name), class: 'language_selector'

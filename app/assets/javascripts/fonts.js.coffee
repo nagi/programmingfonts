@@ -14,12 +14,11 @@ window.Progfonts =
   snippet: ->
     Progfonts.selectedLanguageData().snippet
   templateSource: """
-                   <div id='container' class='{{selectedFont}}'>
-                     <a href="/">Font List</a>
-                     <h1>{{fontName}}</h1>
-                     <pre class='brush: {{selectedLanguage}}'>{{snippet}}</pre>
-                   </div>
-                   """
+                  <div id='container' class='{{selectedFont}}'>
+                    <h1>{{fontName}}</h1>
+                    <pre class='brush: {{selectedLanguage}}'>{{snippet}}</pre>
+                  </div>
+                  """
   renderTo: ($id)->
     Progfonts.destination = $id
     $.getScript('/assets/' + this.selectedLanguageData().highlighter, Progfonts.compile)
