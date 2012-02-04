@@ -13,8 +13,6 @@ window.Progfonts =
     Progfonts.selectedFontData().description
   snippet: ->
     Progfonts.selectedLanguageData().snippet
-  getBrush: ->
-    SyntaxHighlighter.autoloader('java /assets/shBrushJava.js')
   templateSource: """
                    <div id='container' class='{{selectedFont}}'>
                      <a href="/">Font List</a>
@@ -22,9 +20,11 @@ window.Progfonts =
                      <pre class='brush: {{selectedLanguage}}'>{{snippet}}</pre>
                    </div>
                    """
-  renderTo: ($id)=>
-    # Progfonts.getBrush()
+  renderTo: ($id)->
+    Progfonts.destination = $id
+    $.getScript('/assets/' + this.selectedLanguageData().highlighter, Progfonts.compile)
+  compile: ->
     template = Handlebars.compile(Progfonts.templateSource)
     rendered_html = template(Progfonts)
-    $id.replaceWith(rendered_html)
+    Progfonts.destination.replaceWith(rendered_html)
     SyntaxHighlighter.highlight()

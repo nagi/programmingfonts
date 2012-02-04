@@ -25,7 +25,7 @@
     }
 -
   name: C
-  highlighter: shBrushC.js
+  highlighter: shBrushCpp.js
   snippet: >
     #include <stdio.h>
 

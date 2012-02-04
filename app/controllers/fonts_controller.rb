@@ -6,7 +6,9 @@ class FontsController < ApplicationController
 
   def show
     @font = Font.find(params[:id])
-    @language = 'java'
+    @fonts_json = Font.to_json
+    @languages_json = Language.to_json
+    @language = 'c'
   end
 
   def new
