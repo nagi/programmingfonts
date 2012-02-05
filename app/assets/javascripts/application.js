@@ -5,4 +5,17 @@
 //
 //= require shCore
 //
+//= require shBrushRuby
+//= require shBrushJScript
+//= require shBrushJava
+//= require shBrushCpp
+//= require shBrushPhp
+//= require shBrushPython
+//= require shBrushCSharp
+// dont require shBrushPerl : Perl brush condenses code for some reason.
+//= require shBrushSql
+//= require shBrushBash
+//= require shBrushVb
+//= require shBrushObjC
+//
 //= require fonts
