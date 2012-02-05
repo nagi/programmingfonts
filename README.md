@@ -37,5 +37,4 @@ are able to decide what is "popular".
 0. SQL
 0. Shell
 0. Visual Basic
-0. Actionscript
 0. Objective-C
