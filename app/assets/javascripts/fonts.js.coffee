@@ -1,29 +1,43 @@
+# Core application logic and data
 window.Progfonts =
+  # Options
   fonts: 'To be set before calling renderTo().'
   languages: 'To be set ...'
   selectedFont: 'To be set ...'
   selectedLanguage: 'To be set ...'
+  destination: 'To be set ...'
+  # External Functions
+  render: ->
+    template = Handlebars.compile(this.templateSource)
+    rendered_html = template(this)
+    $(this.destination).replaceWith(rendered_html)
+    SyntaxHighlighter.highlight()
+  # Internal functions & Data
   selectedFontData: ->
-    Progfonts.fonts[Progfonts.selectedFont]
+    this.fonts[this.selectedFont]
   selectedLanguageData: ->
-    Progfonts.languages[Progfonts.selectedLanguage]
+    this.languages[this.selectedLanguage]
   fontName: ->
-    Progfonts.selectedFontData().name
+    this.selectedFontData().name
   fontDescription: ->
-    Progfonts.selectedFontData().description
+    this.selectedFontData().description
   snippet: ->
-    Progfonts.selectedLanguageData().snippet
+    this.selectedLanguageData().snippet
   templateSource: """
-                  <div id='container' class='{{selectedFont}}'>
+                  <div id='code_snippet' class='{{selectedFont}}'>
                     <h1>{{fontName}}</h1>
                     <pre class='brush: {{selectedLanguage}}'>{{snippet}}</pre>
                   </div>
                   """
-  renderTo: ($id)->
-    Progfonts.destination = $id
-    $.getScript('/assets/' + this.selectedLanguageData().highlighter, Progfonts.compile)
-  compile: ->
-    template = Handlebars.compile(Progfonts.templateSource)
-    rendered_html = template(Progfonts)
-    Progfonts.destination.replaceWith(rendered_html)
-    SyntaxHighlighter.highlight()
+
+# Change language of code snippet without hitting the server
+$(->
+  changeCodeSnippeTo = (language)->
+    Progfonts.selectedLanguage = language
+    Progfonts.render()
+
+  $('.language_selector').click ->
+    languageClicked = $(this).data().language
+    changeCodeSnippeTo(languageClicked)
+    false
+)

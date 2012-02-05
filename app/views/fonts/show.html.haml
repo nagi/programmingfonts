@@ -8,5 +8,6 @@
   Progfonts.languages = #{@languages_json};
   Progfonts.selectedFont = "#{@font.unix_name}";
   Progfonts.selectedLanguage = "#{@language}";
-  Progfonts.renderTo($('#code_snippet'));
+  Progfonts.destination = '#code_snippet';
+  Progfonts.render();
   SyntaxHighlighter.all()
