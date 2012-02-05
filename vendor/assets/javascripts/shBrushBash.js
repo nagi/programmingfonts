@@ -50,7 +50,7 @@
 	}
 
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
-	Brush.aliases	= ['bash', 'shell'];
+	Brush.aliases	= ['bash-shell', 'bash', 'shell'];
 
 	SyntaxHighlighter.brushes.Bash = Brush;
 

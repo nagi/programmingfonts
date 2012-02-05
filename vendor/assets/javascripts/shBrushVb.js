@@ -47,7 +47,7 @@
 	};
 
 	Brush.prototype	= new SyntaxHighlighter.Highlighter();
-	Brush.aliases	= ['vb', 'vbnet'];
+	Brush.aliases	= ['visual-basic', 'vb', 'vbnet'];
 
 	SyntaxHighlighter.brushes.Vb = Brush;
 
