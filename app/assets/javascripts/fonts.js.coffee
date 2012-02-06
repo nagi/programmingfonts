@@ -10,7 +10,7 @@ window.Progfonts =
   render: ->
     this.compileTemplate()
     this.higlightSyntax()
-    this.useCorrectFont()
+    this.useSelectedFont()
   # Internal functions & Data
   selectedFontData: ->
     this.fonts[this.selectedFont]
@@ -34,17 +34,17 @@ window.Progfonts =
     $(this.destination).replaceWith(rendered_html)
   higlightSyntax: ->
     SyntaxHighlighter.highlight()
-  useCorrectFont: ->
+  useSelectedFont: ->
     $('code').addClass(this.selectedFont)
 
 # Change language of code snippet without hitting the server
 $(->
-  changeCodeSnippeTo = (language)->
+  changeCodeSnippetTo = (language)->
     Progfonts.selectedLanguage = language
     Progfonts.render()
 
   $('.language_selector').click ->
     languageClicked = $(this).data().language
-    changeCodeSnippeTo(languageClicked)
+    changeCodeSnippetTo(languageClicked)
     false
 )
