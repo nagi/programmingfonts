@@ -8,10 +8,9 @@ window.Progfonts =
   destination: 'To be set ...'
   # External Functions
   render: ->
-    template = Handlebars.compile(this.templateSource)
-    rendered_html = template(this)
-    $(this.destination).replaceWith(rendered_html)
-    SyntaxHighlighter.highlight()
+    this.compileTemplate()
+    this.higlightSyntax()
+    this.useCorrectFont()
   # Internal functions & Data
   selectedFontData: ->
     this.fonts[this.selectedFont]
@@ -29,6 +28,14 @@ window.Progfonts =
                     <pre class='brush: {{selectedLanguage}}'>{{snippet}}</pre>
                   </div>
                   """
+  compileTemplate: ->
+    template = Handlebars.compile(this.templateSource)
+    rendered_html = template(this)
+    $(this.destination).replaceWith(rendered_html)
+  higlightSyntax: ->
+    SyntaxHighlighter.highlight()
+  useCorrectFont: ->
+    $('code').addClass(this.selectedFont)
 
 # Change language of code snippet without hitting the server
 $(->

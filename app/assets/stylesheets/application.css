@@ -12,5 +12,5 @@
  *= require shProgFontCore
  * require shThemeProgFontDark
  *= require shThemeProgFontLight
- *= require_tree .
+ *= require fonts
 */
