@@ -1,8 +1,4 @@
-%h1 Programming Fonts
-%p If you're looking at it all day, make it look nice.
 %ol.fonts
   - @fonts.each do |font|
     %li.font
       = link_to font.name, font_url(font), class:font.unix_name
-      %p= font.filename
-      %a= font.link

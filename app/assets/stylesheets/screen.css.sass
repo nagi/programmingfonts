@@ -1,8 +1,38 @@
-/*
-  Welcome to Compass.
-  In this file you should write your main styles. (or centralize your imports)
-  Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
-
 @import "compass/reset"
-@import "blueprint"
+@import "compass/css3/text-shadow"
+@import "compass/css3/images"
+
+ol.fonts
+  li.font
+    height: 60px
+    a
+      font-size: 3em
+      color: #0a0a0a
+      text-decoration: none
+
+code
+  font-size: 1.2em
+
+#header
+  background-color: #1a1a1a
+  h1
+    padding: 20px
+    color: #4d4d4d
+    font-size: 2.2em
+    +single-text-shadow(black, 2px, 2px, 0px)
+.bar
+  background-color: #777
+  height: 1px
+#language_selector
+  height: 30px
+  @include background(linear-gradient(top, #333, #1a1a1a))
+  color: #4d4d4d
+  a 
+    color: #4d4d4d
+  font-size: 1.2em
+  padding: 10px 8px 5px
+  text-decoration: none
+  +single-text-shadow(black, 2px, 2px, 0px)
+  .selected
+    color: white
+
