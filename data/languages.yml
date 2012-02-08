@@ -2,30 +2,54 @@
   name: Ruby
   highlighter: shBrushRuby.js
   snippet: >
-    def create_set_and_get(initial_value=0) # Note the default value of 0
-      closure_value = initial_value
-      return Proc.new {|x| closure_value = x}, Proc.new { closure_value }
-    end
-     
-    setter, getter = create_set_and_get  # ie. returns two values
-    setter.call(21)
-    getter.call # => 21
-     
-    #You can also use a parameter variable as a binding for the closure. 
-    #So the above can be rewritten as...
-     
-    def create_set_and_get(closure_value=0)
-      return proc {|x| closure_value = x } , proc { closure_value }
+    class Language
+      @@all = []
+      cattr_accessor :all
+      attr_accessor :name, :highlighter, :snippet
+
+      def self.load
+        languages = YAML.load(File.open(Rails.root.join('data','languages.yml')))
+        languages.each do |l|
+          @@all << new(l['name'], l['highlighter'], l['snippet'])
+        end
+      end
+
+      def self.to_hash
+        hash = {}
+        @@all.each do |l|
+          hash[l.unix_name] = {
+            name: l.name,
+            highlighter: l.highlighter,
+            snippet: l.snippet
+          }
+        end
+        hash
+      end
+
+      def self.to_json
+        # TODO; Investigate why my array is dissappearing now &
+        # then - Gargabe Collector? Superclass redefines @@all?
+        load if @@all.empty?
+        to_hash.to_json
+      end
+
+      def initialize(name, highlighter, snippet)
+        @name, @highlighter, @snippet = name, highlighter, snippet
+      end
+
+      def unix_name
+        @name.parameterize
+      end
     end
 -
   name: JavaScript
   highlighter: shBrushJScript.js
   snippet: >
-    // The prototype of object instances created by a constructor is
-    // that constructor's "prototype" property.
-    LCMCalculator.prototype = { // object literal
-        constructor: LCMCalculator, // when reassigning a prototype, set the constructor property appropriately
-        gcd: function () { // method that calculates the greatest common divisor
+    LCMCalculator.prototype = {
+        // when reassigning a prototype, set the constructor property
+        constructor: LCMCalculator, 
+        // method that calculates the greatest common divisor
+        gcd: function () {
             // Euclidean algorithm:
             var a = Math.abs(this.a), b = Math.abs(this.b), t;
             if (a < b) {
@@ -39,19 +63,13 @@
                 b = a % b;
                 a = t;
             }
-            // Only need to calculate GCD once, so "redefine" this method.
-            // (Actually not redefinition - it's defined on the instance itself,
-            // so that this.gcd refers to this "redefinition" instead of LCMCalculator.prototype.gcd.)
-            // Also, 'gcd' === "gcd", this['gcd'] === this.gcd
             this['gcd'] = function () {
                 return a;
             };
             return a;
         },
-        // Object property names can be specified by strings delimited by double (") or single (') quotes.
+        // Object property names can be specified by strings.
         "lcm" : function () {
-            // Variable names don't collide with object properties, e.g. |lcm| is not |this.lcm|.
-            // not using |this.a * this.b| to avoid FP precision issues
             var lcm = this.a / this.gcd() * this.b;
             // Only need to calculate lcm once, so "redefine" this method.
             this.lcm = function () {
@@ -81,12 +99,14 @@
         printf("%c",c);
       }
 
-      fclose(ptr);			/* Close the file.			*/
+      fclose(ptr);  /* Close the file.*/
     }
 -
   name: Java
   highlighter: shBrushJava.js
   snippet: >
+    // Class to Model the village bike.
+
     public class Bicycle {
         public int cadence;
         public int gear;
