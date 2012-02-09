@@ -1,12 +1,10 @@
 @import "compass/reset"
-@import "compass/css3/text-shadow"
+@import "compass/css3/border-radius"
 @import "compass/css3/images"
+@import "compass/css3/text-shadow"
 
 $site_width: 960px
 
-h1
-  font-size: 4em
-  padding-left: 5px
 .content
   width: $site_width
   margin: auto
@@ -17,7 +15,7 @@ h1
     text-decoration: none
   h1
     padding: 20px
-    color: #4d4d4d
+    color: #777
     font-size: 2.2em
     +single-text-shadow(black, 2px, 2px, 0px)
 .bar
@@ -26,10 +24,14 @@ h1
 
 #language_selector
   height: 30px
-  @include background(linear-gradient(top, #333, #1a1a1a))
-  color: #4d4d4d
+  margin: auto
+  text-align: center
+  @include background(linear-gradient(top, #555, #222))
+  @include border-radius(0px 0px 9px 9px)
   a 
-    color: #4d4d4d
+    color: #777
+    padding-left: 4px
+    padding-right: 4px
   font-size: 1.2em
   padding: 10px 8px 5px
   text-decoration: none
@@ -48,5 +50,10 @@ ol.fonts
       color: #0a0a0a
       text-decoration: none
 
-code
+#code_snippet
   font-size: 1.2em
+  h1
+    font-size: 4em
+    padding-left: 3px
+    margin-top: 14px
+    margin-bottom: 14px

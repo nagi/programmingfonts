@@ -1,10 +1,12 @@
-= link_to 'Font list', '/'
-%div#code_snippet
+#language_selector
+  = render 'languages/selector'
+.content
+  %div#code_snippet
 
-:javascript
-  Progfonts.fonts = #{@fonts_json};
-  Progfonts.languages = #{@languages_json};
-  Progfonts.selectedFont = "#{@font.unix_name}";
-  Progfonts.destination = '#code_snippet';
-  Progfonts.render();
-  SyntaxHighlighter.all()
+  :javascript
+    Progfonts.fonts = #{@fonts_json};
+    Progfonts.languages = #{@languages_json};
+    Progfonts.selectedFont = "#{@font.unix_name}";
+    Progfonts.destination = '#code_snippet';
+    Progfonts.render();
+    SyntaxHighlighter.all()
