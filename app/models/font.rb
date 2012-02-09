@@ -17,6 +17,11 @@ class Font < ActiveRecord::Base
     end
   end
 
+  def description
+    markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    markdown.render(super)
+  end
+
   def as_json(options = nil)
     super(only: [:name, :description, :link])
   end

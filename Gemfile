@@ -6,6 +6,8 @@ gem 'pg'
 gem 'thin'
 gem 'heroku'
 
+gem 'redcarpet'
+
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'compass'
