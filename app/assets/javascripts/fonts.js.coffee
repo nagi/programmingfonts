@@ -6,6 +6,12 @@ window.Progfonts =
   selectedFont: null #To be set ...
   destination: null #To be set ...
   # External Functions
+  fontName: ->
+    this.selectedFontData().name
+  description: ->
+    this.selectedFontData().description
+  snippet: ->
+    this.selectedLanguageData().snippet
   selectedLanguage: ->
     storedLanguage = localStorage.getItem('selectedLanguage')
     storedLanguage ?= 'java'
@@ -19,15 +25,12 @@ window.Progfonts =
     this.fonts[this.selectedFont]
   selectedLanguageData: ->
     this.languages[this.selectedLanguage()]
-  fontName: ->
-    this.selectedFontData().name
   fontDescription: ->
     this.selectedFontData().description
-  snippet: ->
-    this.selectedLanguageData().snippet
   templateSource: """
                   <div id='code_snippet' class='{{selectedFont}}'>
                     <h1>{{fontName}}</h1>
+                    <p class='description'>{{description}}</p>
                     <pre class='brush: {{selectedLanguage}}; gutter: false;'>{{snippet}}</pre>
                   </div>
                   """
