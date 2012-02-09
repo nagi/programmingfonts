@@ -4,17 +4,6 @@
 
 $site_width: 960px
 
-ol.fonts
-  li.font
-    height: 60px
-    a
-      font-size: 3em
-      color: #0a0a0a
-      text-decoration: none
-
-code
-  font-size: 1.2em
-
 .content
   width: $site_width
   margin: auto
@@ -31,6 +20,7 @@ code
 .bar
   background-color: #777
   height: 1px
+
 #language_selector
   height: 30px
   @include background(linear-gradient(top, #333, #1a1a1a))
@@ -43,3 +33,17 @@ code
   +single-text-shadow(black, 2px, 2px, 0px)
   .selected
     color: white
+
+ol.fonts
+  margin: auto
+  margin-top: 30px
+  text-align: center
+  li.font
+    height: 80px
+    a
+      font-size: 4em
+      color: #0a0a0a
+      text-decoration: none
+
+code
+  font-size: 1.2em
