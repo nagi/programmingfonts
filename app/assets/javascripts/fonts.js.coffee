@@ -1,16 +1,16 @@
 # Core application logic and data
 window.Progfonts =
   # Options / Public Data
-  fonts: 'To be set before calling renderTo().'
-  languages: 'To be set ...'
-  selectedFont: 'To be set ...'
-  destination: 'To be set ...'
+  fonts: null #To be set before calling renderTo().
+  languages: null #To be set ...
+  selectedFont: null #To be set ...
+  destination: null #To be set ...
   # External Functions
   selectedLanguage: ->
     storedLanguage = localStorage.getItem('selectedLanguage')
     storedLanguage ?= 'java'
   render: ->
-    this.compileTemplate()
+    this.compileTemplate() if Progfonts.destination?
     this.higlightSyntax()
     this.useSelectedFont()
     this.highlightSelectedLanguage()
@@ -45,6 +45,7 @@ window.Progfonts =
 
 # Change language of code snippet without hitting the server
 $(->
+  Progfonts.highlightSelectedLanguage()
   $('.language_selector').click ->
     languageClicked = $(this).data().language
     localStorage.setItem('selectedLanguage', languageClicked)
