@@ -1,3 +1,3 @@
-- Language.all.each do |language|
-  = link_to language.name, font_url(@font, :language => language.unix_name), :"data-language" => language.unix_name, :class => 'language_selector'
+- Language.to_hash.each_pair do |name, data|
+  = link_to data['display_name'], font_url(@font, :language => name), :"data-language" => name, :class => 'language_selector'
   \|

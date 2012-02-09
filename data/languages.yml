@@ -1,5 +1,5 @@
--
-  name: Ruby
+:ruby:
+  display_name: Ruby
   highlighter: shBrushRuby.js
   snippet: >
     class Language
@@ -18,7 +18,7 @@
         hash = {}
         @@all.each do |l|
           hash[l.unix_name] = {
-            name: l.name,
+            display_name: l.name,
             highlighter: l.highlighter,
             snippet: l.snippet
           }
@@ -41,8 +41,8 @@
         @name.parameterize
       end
     end
--
-  name: JavaScript
+:javascript:
+  display_name: JavaScript
   highlighter: shBrushJScript.js
   snippet: >
     LCMCalculator.prototype = {
@@ -81,8 +81,8 @@
             return "LCMCalculator: a = " + this.a + ", b = " + this.b;
         }
     };
--
-  name: C
+:c:
+  display_name: C
   highlighter: shBrushCpp.js
   snippet: >
     #include <stdio.h>
@@ -101,8 +101,8 @@
 
       fclose(ptr);  /* Close the file.*/
     }
--
-  name: Java
+:java:
+  display_name: Java
   highlighter: shBrushJava.js
   snippet: >
     // Class to Model the village bike.
@@ -131,8 +131,8 @@
             return "I am the village bike."
         }
     }
--
-  name: C++
+:c-plus-plus:
+  display_name: C++
   highlighter: shBrushCpp.js
   snippet: >
     // Rectangle class.
@@ -157,8 +157,8 @@
       cout << "area: " << rect.area();
       return 0;
     }
--
-  name: PHP
+:php:
+  display_name: PHP
   highlighter: shBrushPhp.js
   snippet: >
     function lock() {
@@ -171,8 +171,8 @@
         fclose($file);
         return 0;
     }
--
-  name: Python
+:python:
+  display_name: Python
   highlighter: shBrushPython.js
   snippet: >
     def fix_IE_for_attach(request, response):
@@ -202,8 +202,8 @@
                     response['Cache-Control'] = ', '.join(cache_control_values)
 
         return response
--
-  name: C# / .net
+:c-sharp:
+  display_name: C#
   highlighter: shBrushCSharp.js
   snippet: >
     // Declare the generic class.
@@ -230,7 +230,7 @@
     }
 # Wants to condense onto six lines for some reason.
 #-
-#  name: Perl
+#  display_name: Perl
 #  highlighter: shBrushPerl.js
 #  snippet: >
 #    #!/usr/bin/perl
@@ -272,8 +272,8 @@
 #    print "if this didnt work server is not vunerable\n";
 #    print "Password is w00t";
 #    ### EOF ###
--
-  name: SQL
+:sql:
+  display_name: SQL
   highlighter: shBrushSql.js
   snippet: >
     CREATE TABLE tbl_1(id INT);
@@ -285,8 +285,8 @@
       UPDATE tbl_1 SET id=1000 WHERE id=2;
     ROLLBACK TO id_1upd;
       SELECT id FROM tbl_1;
--
-  name: BASH / Shell
+:bash:
+  display_name: BASH / Shell
   highlighter: shBrushShell.js
   snippet: >
     #! /bin/sh
@@ -316,8 +316,8 @@
       exit 3
       ;;
     esac
--
-  name: Visual Basic
+:vb:
+  display_name: Visual Basic
   highlighter: shBrushVb.js
   snippet: >
     Option Explicit
@@ -330,8 +330,8 @@
         Count = Count + 1
         Label1.Caption = Count
     End Sub
--
-  name: Objective-C
+:objective-c:
+  display_name: Objective-C
   highlighter: shBrushShell.js
   snippet: >
     @implementation Stack
