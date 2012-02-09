@@ -7,11 +7,12 @@
     = csrf_meta_tags
   %body
     #header
-      %a{:href => '/'}
-        %h1 Programming Fonts
+      .content
+        %a{:href => '/'}
+          %h1 Programming Fonts
     .bar
-      &nbsp;
     #language_selector
-      = render 'languages/selector'
+      .content
+        = render 'languages/selector'
     .bar
     = yield

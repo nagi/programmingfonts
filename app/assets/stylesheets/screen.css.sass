@@ -2,6 +2,8 @@
 @import "compass/css3/text-shadow"
 @import "compass/css3/images"
 
+$site_width: 960px
+
 ol.fonts
   li.font
     height: 60px
@@ -12,6 +14,10 @@ ol.fonts
 
 code
   font-size: 1.2em
+
+.content
+  width: $site_width
+  margin: auto
 
 #header
   background-color: #1a1a1a
@@ -37,4 +43,3 @@ code
   +single-text-shadow(black, 2px, 2px, 0px)
   .selected
     color: white
-
