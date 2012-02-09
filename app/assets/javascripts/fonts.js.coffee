@@ -28,7 +28,7 @@ window.Progfonts =
   templateSource: """
                   <div id='code_snippet' class='{{selectedFont}}'>
                     <h1>{{fontName}}</h1>
-                    <pre class='brush: {{selectedLanguage}}'>{{snippet}}</pre>
+                    <pre class='brush: {{selectedLanguage}}; gutter: false;'>{{snippet}}</pre>
                   </div>
                   """
   compileTemplate: ->
