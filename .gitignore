@@ -3,6 +3,3 @@
 /log/*.log
 /tmp
 /untracked
-
-# Heroku wont compile assets if they are committed.
-/public/assets
