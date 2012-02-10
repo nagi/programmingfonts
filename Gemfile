@@ -16,7 +16,7 @@ gem 'compass'
 # gem 'jbuilder' # To use Jbuilder templates for JSON
 
 group :assets do
-  gem 'therubyracer'
+  #gem 'therubyracer'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'compass-rails'
