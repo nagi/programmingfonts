@@ -1,8 +1,8 @@
 /*
  *= require_self
  *= require shProgFontCore
- * require shThemeProgFontDark
  *= require shThemeProgFontLight
+ *= require shThemeProgFontDark
  *= require screen
  *= require fonts
 */

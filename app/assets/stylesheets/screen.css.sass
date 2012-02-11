@@ -1,35 +1,40 @@
 @import "compass/reset"
 @import "compass/css3/border-radius"
+@import "compass/css3/box-shadow"
 @import "compass/css3/images"
 @import "compass/css3/text-shadow"
 
 $site_width: 960px
+
+$ash: #777
+$slate: darken($ash, 15%)
+$charcole: darken($ash, 35%)
 
 .content
   width: $site_width
   margin: auto
 
 #header
-  background-color: #1a1a1a
+  background-color: $charcole
   a
     text-decoration: none
   h1
     padding: 20px
-    color: #777
+    color: $ash
     font-size: 2.2em
     +single-text-shadow(black, 2px, 2px, 0px)
 .bar
-  background-color: #777
+  background-color: $ash
   height: 1px
 
 #language_selector
   height: 30px
   margin: auto
   text-align: center
-  @include background(linear-gradient(top, #555, #222))
+  @include background(linear-gradient(top, $slate, darken($slate, 50%)))
   @include border-radius(0px 0px 9px 9px)
   a 
-    color: #777
+    color: $ash
     padding-left: 4px
     padding-right: 4px
   font-size: 1.2em
@@ -47,16 +52,37 @@ ol.fonts
     height: 80px
     a
       font-size: 4em
-      color: #0a0a0a
       text-decoration: none
 
+.theme_switcher
+  $btn_frame : 38px
+  width: $btn_frame 
+  height: $btn_frame 
+  position: relative
+  bottom: 104px
+  left: 343px
+  background-color: $slate
+  padding-left: 6px
+  @include border-radius(4px 4px)
+  border: 1px
+  border-color: $slate
+  border-style: solid
+  +single-box-shadow(lighten($charcole, 6%), 3px, 3px, 7px, 1px, true)
+  img
+    position: absolute
+  img.bulbOn
+    z-index: 1
+  img.bulbOff
+    z-index: 0
+
+
 #code_snippet
-  font-size: 1.2em
+  font-size: 1.1em
   p
     margin-top: 15px
     margin-bottom: 15px
   h1
     font-size: 4em
     padding-left: 3px
-    margin-top: 14px
+    margin-top: -14px
     margin-bottom: 14px

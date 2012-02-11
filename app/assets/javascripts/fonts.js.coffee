@@ -15,11 +15,23 @@ window.Progfonts =
   selectedLanguage: ->
     storedLanguage = localStorage.getItem('selectedLanguage')
     storedLanguage ?= 'java'
+  selectedTheme: ->
+    storedLanguage = localStorage.getItem('selectedTheme')
+    storedLanguage ?= 'light'
+  toggleTheme: ->
+    $('body').toggleClass('light')
+    $('body').toggleClass('dark')
   render: ->
     this.compileTemplate() if Progfonts.destination?
     this.higlightSyntax()
     this.useSelectedFont()
     this.highlightSelectedLanguage()
+  highlightSelectedLanguage: ->
+    $('.language_selector').removeClass('selected')
+    $('[data-language=' + this.selectedLanguage() + ']').addClass('selected')
+  useSelectedTheme: ->
+    unless $('body').hasClass(Progfonts.selectedTheme()) then Progfonts.toggleTheme()
+    if Progfonts.selectedTheme() == 'dark' then $('.theme_switcher .bulbOn').hide()
   # Internal functions & Private Data
   selectedFontData: ->
     this.fonts[this.selectedFont]
@@ -45,13 +57,21 @@ window.Progfonts =
     SyntaxHighlighter.highlight()
   useSelectedFont: ->
     $('code').addClass(this.selectedFont)
-  highlightSelectedLanguage: ->
-    $('.language_selector').removeClass('selected')
-    $('[data-language=' + this.selectedLanguage() + ']').addClass('selected')
 
-# Change language of code snippet without hitting the server
 $(->
+  # Set up header area on load
   Progfonts.highlightSelectedLanguage()
+  Progfonts.useSelectedTheme()
+
+  # Theme changer click
+  $('.theme_switcher a').click ->
+    $(this).children('.bulbOn').toggle()
+    Progfonts.toggleTheme()
+    theme = if $('body').hasClass('light') then 'light' else 'dark'
+    localStorage.setItem('selectedTheme', theme)
+    false
+
+  # Change language of code snippet without hitting the server
   $('.language_selector').click ->
     languageClicked = $(this).data().language
     localStorage.setItem('selectedLanguage', languageClicked)
