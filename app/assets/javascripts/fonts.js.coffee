@@ -4,7 +4,7 @@ window.Progfonts =
   fonts: null #To be set before calling renderTo().
   languages: null #To be set ...
   selectedFont: null #To be set ...
-  destination: null #To be set ...
+  destinationId: 'code_snippet'
   # External Functions
   fontName: ->
     this.selectedFontData().name
@@ -22,7 +22,7 @@ window.Progfonts =
     $('body').toggleClass('light')
     $('body').toggleClass('dark')
   render: ->
-    this.compileTemplate() if Progfonts.destination?
+    this.compileTemplate() if Progfonts.selectedFont?
     this.higlightSyntax()
     this.useSelectedFont()
     this.highlightSelectedLanguage()
@@ -40,19 +40,21 @@ window.Progfonts =
   fontDescription: ->
     this.selectedFontData().description
   templateSource: """
-                  <div id='code_snippet' class='{{selectedFont}}'>
+                  <div id='{{destinationId}}' class='{{selectedFont}}'>
                     <h1>{{fontName}}</h1>
                     {{{description}}}
                     <p>Back to the 
                       <a href="/">font list</a>.
                     </p>
-                    <pre class='brush: {{selectedLanguage}}; gutter: false;'>{{snippet}}</pre>
+                    <div id='code_box'>
+                      <pre class='brush: {{selectedLanguage}}; gutter: false;'>{{snippet}}</pre>
+                    </div>
                   </div>
                   """
   compileTemplate: ->
     template = Handlebars.compile(this.templateSource)
     rendered_html = template(this)
-    $(this.destination).replaceWith(rendered_html)
+    $('#' + this.destinationId).replaceWith(rendered_html)
   higlightSyntax: ->
     SyntaxHighlighter.highlight()
   useSelectedFont: ->
