@@ -4,7 +4,7 @@ window.Progfonts =
   fonts: null #To be set before calling renderTo().
   languages: null #To be set ...
   selectedFont: null #To be set ...
-  destinationId: 'code_snippet'
+  destinationId: 'template_destination'
   # External Functions
   fontName: ->
     this.selectedFontData().name
