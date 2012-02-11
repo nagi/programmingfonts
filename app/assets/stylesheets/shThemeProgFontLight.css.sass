@@ -1,8 +1,16 @@
-// Default Syntax Highlighter theme.
-
 body.light
   background-color: white
   color: $charcole
   a
     color: $charcole
+
+  #template_destination
+    padding-left: 30px
+    padding-right: 30px
+
+  .syntaxhighlighter
+    padding: 30px
+    +single-box-shadow($ash, 3px, 3px, 7px, 1px, true)
+    @include border-radius(4px 4px)
+
   @import _theme_template.css.sass

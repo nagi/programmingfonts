@@ -1,6 +1,3 @@
-// RDark SyntaxHighlighter theme based on theme by Radu Dineiu
-// http://www.vim.org/scripts/script.php?script_id=1732
-
 $background: #1b2426 !default
 
 $line_highlighted_background: #323e41 !default
@@ -34,4 +31,14 @@ body.dark
   color: white
   a
     color: white
+
+  #template_destination
+    padding-left: 30px
+    padding-right: 30px
+
+  .syntaxhighlighter
+    padding: 30px
+    +single-box-shadow(darken($charcole, 6%), 3px, 3px, 7px, 1px, true)
+    @include border-radius(4px 4px)
+
   @import _theme_template.css.sass
