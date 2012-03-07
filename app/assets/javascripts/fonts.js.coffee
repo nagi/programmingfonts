@@ -10,6 +10,8 @@ window.Progfonts =
     this.selectedFontData().name
   description: ->
     this.selectedFontData().description
+  link: ->
+    this.selectedFontData().link
   snippet: ->
     this.selectedLanguageData().snippet
   selectedLanguage: ->
@@ -41,7 +43,8 @@ window.Progfonts =
     this.selectedFontData().description
   templateSource: """
                   <div id='{{destinationId}}' class='{{selectedFont}}'>
-                    <h1>{{fontName}}</h1>
+                    <a href='{{link}}'><h1>{{fontName}}</h1></a>
+                    <a href='{{link}}' class='link'>download</a>
                     {{{description}}}
                     <p>Back to the 
                       <a href="/">font list</a>.
